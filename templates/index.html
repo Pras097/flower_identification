@@ -9,7 +9,12 @@
 
     <title>IrisVision | AI Flower Classifier</title>
 
+
     <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
 
         * {
             margin: 0;
@@ -17,184 +22,296 @@
             box-sizing: border-box;
         }
 
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
         body {
             font-family: "Segoe UI", Arial, sans-serif;
+
             min-height: 100vh;
 
             background:
                 radial-gradient(
-                    circle at top left,
+                    circle at 5% 5%,
                     #dff6e8,
-                    transparent 35%
+                    transparent 28%
                 ),
                 radial-gradient(
-                    circle at bottom right,
-                    #f7e7ff,
-                    transparent 35%
+                    circle at 95% 20%,
+                    #eee4ff,
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    #e7f4ed,
+                    transparent 30%
                 ),
                 #f7f9fb;
 
             color: #17231d;
         }
 
+
         .container {
             width: 92%;
-            max-width: 1150px;
+
+            max-width: 1200px;
+
             margin: auto;
-            padding: 30px 0 50px;
+
+            padding: 28px 0 50px;
         }
 
-        /* NAVBAR */
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
 
         nav {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
-            margin-bottom: 35px;
+
+            margin-bottom: 30px;
         }
+
 
         .logo {
             display: flex;
+
             align-items: center;
+
             gap: 12px;
 
-            font-size: 22px;
-            font-weight: 800;
+            font-size: 23px;
+
+            font-weight: 900;
         }
+
 
         .logo-icon {
-            width: 42px;
-            height: 42px;
+            width: 45px;
+
+            height: 45px;
 
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
-            border-radius: 14px;
+            border-radius: 15px;
 
-            background: #173f2b;
+            background:
+                linear-gradient(
+                    135deg,
+                    #173f2b,
+                    #397555
+                );
+
             color: white;
 
-            font-size: 22px;
+            font-size: 24px;
 
             box-shadow:
-                0 8px 20px rgba(23, 63, 43, .2);
+                0 10px 25px
+                rgba(23, 63, 43, .22);
         }
 
+
         .model-status {
-            padding: 9px 14px;
+            padding: 10px 16px;
 
             border-radius: 30px;
 
             background: #e7f5eb;
+
             color: #27633e;
-
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        /* HERO */
-
-        .hero {
-            background: rgba(255,255,255,.72);
-
-            border: 1px solid white;
-
-            border-radius: 30px;
-
-            padding: 55px;
-
-            box-shadow:
-                0 25px 70px rgba(24, 50, 38, .09);
-
-            backdrop-filter: blur(15px);
-
-            margin-bottom: 22px;
-        }
-
-        .tag {
-            display: inline-block;
-
-            padding: 8px 13px;
-
-            border-radius: 30px;
-
-            background: #edf5ee;
-            color: #356149;
 
             font-size: 12px;
 
             font-weight: 800;
 
-            letter-spacing: 1px;
+            border: 1px solid #d5eadb;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,.90),
+                    rgba(245,251,247,.80)
+                );
+
+            border: 1px solid rgba(255,255,255,.95);
+
+            border-radius: 32px;
+
+            padding: 58px;
+
+            box-shadow:
+                0 30px 80px
+                rgba(24, 50, 38, .10);
+
+            margin-bottom: 24px;
+
+            animation: fadeUp .7s ease;
+        }
+
+
+        .hero::before {
+            content: "✿";
+
+            position: absolute;
+
+            right: 30px;
+
+            top: -70px;
+
+            font-size: 260px;
+
+            color:
+                rgba(38, 93, 64, .045);
+
+            transform: rotate(15deg);
+        }
+
+
+        .tag {
+            display: inline-block;
+
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            background: #edf5ee;
+
+            color: #356149;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.2px;
 
             text-transform: uppercase;
         }
 
+
         .hero h1 {
+            position: relative;
+
             margin-top: 18px;
 
-            max-width: 750px;
+            max-width: 780px;
 
-            font-size: clamp(
-                42px,
-                7vw,
-                82px
-            );
+            font-size:
+                clamp(44px, 7vw, 82px);
 
             line-height: .92;
 
-            letter-spacing: -4px;
+            letter-spacing: -5px;
         }
 
-        .hero p {
-            max-width: 650px;
 
-            margin-top: 22px;
+        .hero h1 span {
+            color: #397555;
+        }
+
+
+        .hero p {
+            max-width: 700px;
+
+            margin-top: 24px;
 
             color: #68766e;
 
-            line-height: 1.7;
+            line-height: 1.75;
 
             font-size: 17px;
         }
 
-        /* MAIN GRID */
+
+        .hero-badges {
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-top: 25px;
+        }
+
+
+        .hero-badge {
+            padding: 9px 13px;
+
+            border-radius: 30px;
+
+            background: white;
+
+            border: 1px solid #e1e9e3;
+
+            color: #526158;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           MAIN GRID
+        ===================================================== */
 
         .main-grid {
             display: grid;
 
-            grid-template-columns:
-                1fr
-                1fr;
+            grid-template-columns: 1fr 1fr;
 
-            gap: 22px;
+            gap: 24px;
         }
+
 
         .card {
             background:
-                rgba(255,255,255,.78);
+                rgba(255,255,255,.86);
 
             border:
-                1px solid white;
+                1px solid rgba(255,255,255,.95);
 
-            border-radius: 25px;
+            border-radius: 26px;
 
             padding: 30px;
 
             box-shadow:
-                0 20px 55px rgba(24, 50, 38, .08);
-
-            backdrop-filter: blur(12px);
+                0 20px 60px
+                rgba(24, 50, 38, .08);
         }
 
-        .card-title {
-            font-size: 22px;
 
-            font-weight: 800;
+        .card-title {
+            font-size: 23px;
+
+            font-weight: 850;
 
             margin-bottom: 7px;
         }
+
 
         .card-subtitle {
             color: #77837c;
@@ -204,17 +321,19 @@
             margin-bottom: 25px;
         }
 
-        /* FORM */
+
+        /* =====================================================
+           FORM
+        ===================================================== */
 
         .form-grid {
             display: grid;
 
-            grid-template-columns:
-                1fr
-                1fr;
+            grid-template-columns: 1fr 1fr;
 
             gap: 18px;
         }
+
 
         .field label {
             display: block;
@@ -223,28 +342,30 @@
 
             font-size: 13px;
 
-            font-weight: 700;
+            font-weight: 800;
 
             color: #435049;
         }
+
 
         .input-box {
             position: relative;
         }
 
+
         input {
             width: 100%;
 
             padding:
-                14px
+                15px
                 45px
-                14px
-                14px;
+                15px
+                15px;
 
             border:
                 1px solid #dfe6e1;
 
-            border-radius: 13px;
+            border-radius: 14px;
 
             outline: none;
 
@@ -252,16 +373,25 @@
 
             font-size: 15px;
 
-            transition: .2s;
+            transition: .25s;
         }
+
+
+        input:hover {
+            border-color: #b9cdbf;
+        }
+
 
         input:focus {
             border-color: #47755a;
+
+            background: white;
 
             box-shadow:
                 0 0 0 4px
                 rgba(71,117,90,.10);
         }
+
 
         .unit {
             position: absolute;
@@ -277,49 +407,66 @@
 
             font-size: 12px;
 
-            font-weight: 700;
+            font-weight: 800;
         }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
 
         .buttons {
             display: flex;
 
             gap: 10px;
 
-            margin-top: 23px;
+            margin-top: 24px;
         }
+
 
         button {
             border: none;
 
-            border-radius: 13px;
+            border-radius: 14px;
 
-            padding: 14px 20px;
+            padding: 15px 20px;
 
             cursor: pointer;
 
             font-size: 14px;
 
-            font-weight: 800;
+            font-weight: 850;
 
-            transition: .2s;
+            transition: .25s;
         }
+
 
         .predict {
             flex: 1;
 
-            background: #173f2b;
+            background:
+                linear-gradient(
+                    135deg,
+                    #173f2b,
+                    #397555
+                );
 
             color: white;
 
             box-shadow:
-                0 10px 25px
-                rgba(23,63,43,.2);
+                0 12px 28px
+                rgba(23,63,43,.22);
         }
 
+
         .predict:hover {
-            transform:
-                translateY(-2px);
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 16px 32px
+                rgba(23,63,43,.28);
         }
+
 
         .demo {
             background: #edf3ee;
@@ -327,9 +474,17 @@
             color: #31543f;
         }
 
+
         .demo:hover {
-            background: #e2ebe4;
+            background: #dfeae2;
+
+            transform: translateY(-2px);
         }
+
+
+        /* =====================================================
+           ERROR
+        ===================================================== */
 
         .error {
             background: #fff0f0;
@@ -345,7 +500,10 @@
             font-size: 13px;
         }
 
-        /* RESULT */
+
+        /* =====================================================
+           RESULT CARD
+        ===================================================== */
 
         .result-card {
             background:
@@ -362,67 +520,146 @@
             overflow: hidden;
         }
 
+
+        .result-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+
+            height: 230px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.05);
+
+            right: -80px;
+
+            top: -80px;
+        }
+
+
         .result-card::after {
             content: "✿";
 
             position: absolute;
 
-            right: -30px;
+            right: -25px;
 
-            top: -55px;
+            bottom: -80px;
 
-            font-size: 230px;
+            font-size: 220px;
 
             color:
-                rgba(255,255,255,.045);
+                rgba(255,255,255,.035);
 
-            transform:
-                rotate(18deg);
+            transform: rotate(18deg);
         }
+
+
+        .result-content {
+            position: relative;
+
+            z-index: 2;
+        }
+
 
         .result-label {
             color: #c9dbcf;
 
-            font-size: 12px;
+            font-size: 11px;
 
-            font-weight: 800;
+            font-weight: 900;
 
             letter-spacing: 2px;
 
             text-transform: uppercase;
         }
 
-        .flower-icon {
-            width: 70px;
 
-            height: 70px;
+        /* =====================================================
+           SPECIES IMAGE
+           
+           IMPORTANT:
+           These are the ONLY image paths in this page.
 
-            display: flex;
+           Your project structure:
 
-            justify-content: center;
+           static/
+               images/
+                   iris_setosa.jpg
+                   iris_versicolor.jpg
+                   iris_VIRGINICA.jpg
 
-            align-items: center;
+           ===================================================== */
 
-            border-radius: 20px;
+        .species-image-wrapper {
+            width: 180px;
 
-            margin:
-                25px
-                0
-                17px;
+            height: 180px;
+
+            margin: 24px 0 20px;
+
+            border-radius: 28px;
+
+            overflow: hidden;
 
             background:
-                rgba(255,255,255,.11);
+                rgba(255,255,255,.10);
 
-            font-size: 34px;
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,.15);
         }
+
+
+        .species-image {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: .4s;
+        }
+
+
+        .species-image:hover {
+            transform: scale(1.06);
+        }
+
+
+        /* =====================================================
+           RESULT SPECIES NAME
+        ===================================================== */
 
         .result-card h2 {
             font-size: 38px;
 
             letter-spacing: -1.5px;
 
-            margin-bottom: 10px;
+            margin-bottom: 7px;
         }
+
+
+        .scientific-name {
+            color: #b9d3c3;
+
+            font-size: 13px;
+
+            font-style: italic;
+
+            margin-bottom: 14px;
+        }
+
 
         .result-description {
             color: #d2dfd7;
@@ -431,10 +668,70 @@
 
             line-height: 1.7;
 
-            max-width: 420px;
+            max-width: 520px;
 
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
+
+
+        /* =====================================================
+           BIOLOGICAL INFORMATION
+        ===================================================== */
+
+        .species-info {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .info-item {
+            padding: 13px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,.075);
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+        }
+
+
+        .info-label {
+            color: #9fbbb0;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            font-weight: 800;
+
+            margin-bottom: 4px;
+        }
+
+
+        .info-value {
+            color: #f1f7f3;
+
+            font-size: 12px;
+
+            line-height: 1.4;
+
+            font-weight: 650;
+        }
+
+
+        /* =====================================================
+           CONFIDENCE
+        ===================================================== */
 
         .confidence-box {
             background:
@@ -449,6 +746,7 @@
             padding: 16px;
         }
 
+
         .confidence-top {
             display: flex;
 
@@ -459,14 +757,16 @@
             font-size: 13px;
         }
 
+
         .confidence-top strong {
-            font-size: 16px;
+            font-size: 17px;
         }
+
 
         .progress {
             width: 100%;
 
-            height: 7px;
+            height: 8px;
 
             background:
                 rgba(255,255,255,.14);
@@ -476,17 +776,26 @@
             overflow: hidden;
         }
 
+
         .progress span {
             display: block;
 
             height: 100%;
 
-            background: #d9e8aa;
+            background:
+                linear-gradient(
+                    90deg,
+                    #d9e8aa,
+                    #b9d987
+                );
 
             border-radius: 20px;
         }
 
-        /* PROBABILITIES */
+
+        /* =====================================================
+           PROBABILITIES
+        ===================================================== */
 
         .probabilities {
             margin-top: 20px;
@@ -496,6 +805,7 @@
             gap: 9px;
         }
 
+
         .probability {
             display: flex;
 
@@ -504,12 +814,23 @@
             color: #d6e2da;
 
             font-size: 12px;
+
+            padding-bottom: 7px;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.06);
         }
 
-        /* EMPTY RESULT */
+
+        /* =====================================================
+           EMPTY RESULT
+           
+           NO IMAGE IS DISPLAYED HERE.
+        ===================================================== */
 
         .empty-result {
-            min-height: 400px;
+            min-height: 520px;
 
             display: flex;
 
@@ -518,19 +839,23 @@
             justify-content: center;
         }
 
-        .empty-icon {
-            font-size: 70px;
 
-            opacity: .6;
+        .empty-icon {
+            font-size: 72px;
+
+            opacity: .65;
 
             margin-bottom: 15px;
         }
 
+
         .empty-result h2 {
             font-size: 30px;
 
-            margin-bottom: 10px;
+            margin:
+                12px 0 10px;
         }
+
 
         .empty-result p {
             color: #d2dfd7;
@@ -538,26 +863,28 @@
             line-height: 1.7;
 
             font-size: 14px;
+
+            max-width: 430px;
         }
 
-        /* STATS */
+
+        /* =====================================================
+           MODEL PERFORMANCE
+
+           NO "4"
+           NO "3"
+        ===================================================== */
 
         .stats {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 15px;
-
-            margin-top: 22px;
+            margin-top: 24px;
         }
 
+
         .stat {
-            padding: 22px;
+            padding: 23px;
 
             background:
-                rgba(255,255,255,.65);
+                rgba(255,255,255,.72);
 
             border:
                 1px solid #e5ebe6;
@@ -565,13 +892,15 @@
             border-radius: 18px;
         }
 
+
         .stat-number {
-            font-size: 27px;
+            font-size: 28px;
 
             font-weight: 900;
 
             color: #285a40;
         }
+
 
         .stat-text {
             color: #77827c;
@@ -583,6 +912,11 @@
             line-height: 1.5;
         }
 
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
         footer {
             text-align: center;
 
@@ -593,42 +927,81 @@
             font-size: 12px;
         }
 
-        /* RESPONSIVE */
 
-        @media (max-width: 850px) {
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
 
             .main-grid {
                 grid-template-columns: 1fr;
             }
 
             .hero {
-                padding: 35px;
+                padding: 40px;
             }
+
         }
 
-        @media (max-width: 550px) {
+
+        @media (max-width: 600px) {
 
             .container {
                 width: 94%;
             }
 
-            .hero {
-                padding: 27px;
+            nav {
+                margin-bottom: 20px;
+            }
 
-                border-radius: 22px;
+            .model-status {
+                font-size: 10px;
+
+                padding:
+                    8px 10px;
+            }
+
+            .hero {
+                padding: 28px;
+
+                border-radius: 23px;
             }
 
             .hero h1 {
                 font-size: 48px;
 
-                letter-spacing: -2px;
+                letter-spacing: -3px;
             }
 
             .form-grid {
                 grid-template-columns: 1fr;
             }
 
-            .stats {
+            .species-info {
                 grid-template-columns: 1fr;
             }
 
@@ -636,13 +1009,16 @@
                 padding: 22px;
             }
 
-            nav {
-                margin-bottom: 22px;
+            .buttons {
+                flex-direction: column;
             }
 
-            .model-status {
-                font-size: 11px;
+            .species-image-wrapper {
+                width: 150px;
+
+                height: 150px;
             }
+
         }
 
     </style>
@@ -652,10 +1028,13 @@
 
 <body>
 
+
 <div class="container">
 
 
-    <!-- NAVIGATION -->
+    <!-- =====================================================
+         NAVIGATION
+    ===================================================== -->
 
     <nav>
 
@@ -671,73 +1050,134 @@
 
         </div>
 
+
         <div class="model-status">
-            ● MODEL READY
+
+            {% if model_ready %}
+
+                ● MODEL READY
+
+            {% else %}
+
+                ● MODEL ERROR
+
+            {% endif %}
+
         </div>
 
     </nav>
 
 
-    <!-- HERO -->
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
 
     <section class="hero">
 
         <span class="tag">
-            Machine Learning · Flask
+            Machine Learning · Flask · Logistic Regression
         </span>
 
+
         <h1>
+
             Discover the
-            Iris species.
+
+            <span>
+                Iris species.
+            </span>
+
         </h1>
 
+
         <p>
+
             Enter four simple flower measurements and let
             the Logistic Regression model identify the most
-            likely Iris species. Built as an interactive
-            machine-learning web application.
+            likely Iris species. After prediction, the system
+            displays the predicted species, flower image,
+            confidence score, probabilities, and biological
+            information.
+
         </p>
+
+
+        <div class="hero-badges">
+
+            <div class="hero-badge">
+                🧠 AI Powered
+            </div>
+
+            <div class="hero-badge">
+                🌸 Iris Classification
+            </div>
+
+            <div class="hero-badge">
+                📊 Machine Learning
+            </div>
+
+            <div class="hero-badge">
+                ⚡ Instant Prediction
+            </div>
+
+        </div>
 
     </section>
 
 
-    <!-- MAIN -->
+    <!-- =====================================================
+         MAIN CONTENT
+    ===================================================== -->
 
     <div class="main-grid">
 
 
-        <!-- INPUT CARD -->
+        <!-- =================================================
+             INPUT SECTION
+        ================================================== -->
 
         <section class="card">
 
+
             <h2 class="card-title">
-                Flower measurements
+                Flower Measurements
             </h2>
+
 
             <p class="card-subtitle">
                 Enter the measurements in centimeters.
             </p>
 
 
+            <!-- ERROR -->
+
             {% if error %}
 
             <div class="error">
+
                 {{ error }}
+
             </div>
 
             {% endif %}
 
 
+            <!-- FORM -->
+
             <form method="POST">
+
 
                 <div class="form-grid">
 
+
+                    <!-- SEPAL LENGTH -->
 
                     <div class="field">
 
                         <label for="sepal_length">
                             Sepal Length
                         </label>
+
 
                         <div class="input-box">
 
@@ -752,6 +1192,7 @@
                                 required
                             >
 
+
                             <span class="unit">
                                 cm
                             </span>
@@ -761,11 +1202,14 @@
                     </div>
 
 
+                    <!-- SEPAL WIDTH -->
+
                     <div class="field">
 
                         <label for="sepal_width">
                             Sepal Width
                         </label>
+
 
                         <div class="input-box">
 
@@ -780,6 +1224,7 @@
                                 required
                             >
 
+
                             <span class="unit">
                                 cm
                             </span>
@@ -789,11 +1234,14 @@
                     </div>
 
 
+                    <!-- PETAL LENGTH -->
+
                     <div class="field">
 
                         <label for="petal_length">
                             Petal Length
                         </label>
+
 
                         <div class="input-box">
 
@@ -808,6 +1256,7 @@
                                 required
                             >
 
+
                             <span class="unit">
                                 cm
                             </span>
@@ -817,11 +1266,14 @@
                     </div>
 
 
+                    <!-- PETAL WIDTH -->
+
                     <div class="field">
 
                         <label for="petal_width">
                             Petal Width
                         </label>
+
 
                         <div class="input-box">
 
@@ -836,6 +1288,7 @@
                                 required
                             >
 
+
                             <span class="unit">
                                 cm
                             </span>
@@ -844,10 +1297,14 @@
 
                     </div>
 
+
                 </div>
 
 
+                <!-- BUTTONS -->
+
                 <div class="buttons">
+
 
                     <button
                         type="submit"
@@ -856,176 +1313,585 @@
                         Predict Species →
                     </button>
 
+
                     <button
                         type="button"
                         class="demo"
                         onclick="loadDemo()"
                     >
-                        Demo
+                        ✨ Demo
                     </button>
+
 
                 </div>
 
+
             </form>
+
 
         </section>
 
 
-        <!-- RESULT CARD -->
+        <!-- =================================================
+             RESULT SECTION
+        ================================================== -->
 
         <section class="card result-card">
 
 
-            {% if prediction is not none %}
-
-                <div class="result-label">
-                    Prediction result
-                </div>
+            <div class="result-content">
 
 
-                <div class="flower-icon">
-                    {{ result_info.icon }}
-                </div>
+                <!-- =================================================
+                     IMPORTANT:
+
+                     app.py sends:
+
+                     result.prediction
+                     result.display_name
+                     result.description
+                     result.confidence
+                     result.probabilities
+
+                     So we use "result" here.
+                ================================================== -->
 
 
-                <h2>
-                    {{ result_info.name }}
-                </h2>
+                {% if result %}
 
 
-                <p class="result-description">
-                    {{ result_info.description }}
-                </p>
-
-
-                <div class="confidence-box">
-
-                    <div class="confidence-top">
-
-                        <span>
-                            Model confidence
-                        </span>
-
-                        <strong>
-                            {{ confidence }}%
-                        </strong>
-
-                    </div>
-
-
-                    <div class="progress">
-
-                        <span
-                            style="width: {{ confidence }}%;"
-                        ></span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="probabilities">
-
-                    {% for species, probability in probabilities.items() %}
-
-                    <div class="probability">
-
-                        <span>
-                            {{ species.replace("Iris-", "Iris ") }}
-                        </span>
-
-                        <strong>
-                            {{ probability }}%
-                        </strong>
-
-                    </div>
-
-                    {% endfor %}
-
-                </div>
-
-
-            {% else %}
-
-
-                <div class="empty-result">
-
-                    <div class="empty-icon">
-                        🌿
-                    </div>
+                    <!-- RESULT LABEL -->
 
                     <div class="result-label">
-                        Waiting for input
+
+                        Prediction Result
+
                     </div>
 
+
+                    <!-- =================================================
+                         SPECIES IMAGE
+
+                         IMAGE PATH 1
+                         Iris Setosa
+                    ================================================== -->
+
+                    {% if result.prediction == "Iris-setosa" %}
+
+
+                        <div class="species-image-wrapper">
+
+                            <!--
+                                INSERT/REPLACE SETOSA IMAGE HERE
+
+                                Your current file:
+                                static/images/iris_setosa.jpg
+                            -->
+
+                            <img
+                                class="species-image"
+                                src="{{ url_for('static', filename='images/iris_setosa.jpg') }}"
+                                alt="Iris Setosa flower"
+                            >
+
+                        </div>
+
+
+                    <!-- =================================================
+                         IMAGE PATH 2
+                         Iris Versicolor
+                    ================================================== -->
+
+                    {% elif result.prediction == "Iris-versicolor" %}
+
+
+                        <div class="species-image-wrapper">
+
+                            <!--
+                                INSERT/REPLACE VERSICOLOR IMAGE HERE
+
+                                Your current file:
+                                static/images/iris_versicolor.jpg
+                            -->
+
+                            <img
+                                class="species-image"
+                                src="{{ url_for('static', filename='images/iris_versicolor.jpg') }}"
+                                alt="Iris Versicolor flower"
+                            >
+
+                        </div>
+
+
+                    <!-- =================================================
+                         IMAGE PATH 3
+                         Iris Virginica
+                    ================================================== -->
+
+                    {% elif result.prediction == "Iris-virginica" %}
+
+
+                        <div class="species-image-wrapper">
+
+                            <!--
+                                INSERT/REPLACE VIRGINICA IMAGE HERE
+
+                                Your current file:
+                                static/images/iris_VIRGINICA.jpg
+                            -->
+
+                            <img
+                                class="species-image"
+                                src="{{ url_for('static', filename='images/iris_VIRGINICA.jpg') }}"
+                                alt="Iris Virginica flower"
+                            >
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                    <!-- =================================================
+                         PREDICTED SPECIES NAME
+                    ================================================== -->
+
                     <h2>
-                        Your result appears here.
+
+                        {{ result.display_name }}
+
                     </h2>
 
-                    <p>
-                        Enter the four flower measurements
-                        and click "Predict Species" to see
-                        the model's prediction and confidence.
-                    </p>
 
-                </div>
+                    <!-- =================================================
+                         IRIS SETOSA BIOLOGICAL INFORMATION
+                    ================================================== -->
+
+                    {% if result.prediction == "Iris-setosa" %}
 
 
-            {% endif %}
+                        <div class="scientific-name">
 
+                            Iris setosa
+
+                        </div>
+
+
+                        <p class="result-description">
+
+                            Iris setosa is a perennial flowering plant
+                            belonging to the Iridaceae family. It is
+                            generally recognized by its smaller petals
+                            and broader sepals. In the Iris dataset,
+                            it is usually distinguished by its relatively
+                            small petal measurements.
+
+                        </p>
+
+
+                        <div class="species-info">
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Common Name
+                                </div>
+
+                                <div class="info-value">
+                                    Wild Iris
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Family
+                                </div>
+
+                                <div class="info-value">
+                                    Iridaceae
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Main Feature
+                                </div>
+
+                                <div class="info-value">
+                                    Smaller petals
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Plant Type
+                                </div>
+
+                                <div class="info-value">
+                                    Perennial flowering plant
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    <!-- =================================================
+                         IRIS VERSICOLOR BIOLOGICAL INFORMATION
+                    ================================================== -->
+
+                    {% elif result.prediction == "Iris-versicolor" %}
+
+
+                        <div class="scientific-name">
+
+                            Iris versicolor
+
+                        </div>
+
+
+                        <p class="result-description">
+
+                            Iris versicolor is a perennial flowering
+                            plant belonging to the Iridaceae family.
+                            It is commonly known as the Northern Blue
+                            Flag. Its flower measurements are generally
+                            intermediate between Iris setosa and
+                            Iris virginica.
+
+                        </p>
+
+
+                        <div class="species-info">
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Common Name
+                                </div>
+
+                                <div class="info-value">
+                                    Northern Blue Flag
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Family
+                                </div>
+
+                                <div class="info-value">
+                                    Iridaceae
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Flower Color
+                                </div>
+
+                                <div class="info-value">
+                                    Blue to violet
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Main Feature
+                                </div>
+
+                                <div class="info-value">
+                                    Intermediate measurements
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    <!-- =================================================
+                         IRIS VIRGINICA BIOLOGICAL INFORMATION
+                    ================================================== -->
+
+                    {% elif result.prediction == "Iris-virginica" %}
+
+
+                        <div class="scientific-name">
+
+                            Iris virginica
+
+                        </div>
+
+
+                        <p class="result-description">
+
+                            Iris virginica is a perennial flowering
+                            plant belonging to the Iridaceae family.
+                            It is generally associated with larger
+                            flowers and comparatively longer and wider
+                            petals. In the Iris dataset, it commonly
+                            has larger measurements than the other
+                            two species.
+
+                        </p>
+
+
+                        <div class="species-info">
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Common Name
+                                </div>
+
+                                <div class="info-value">
+                                    Virginia Iris
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Family
+                                </div>
+
+                                <div class="info-value">
+                                    Iridaceae
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Main Feature
+                                </div>
+
+                                <div class="info-value">
+                                    Larger petals
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <div class="info-label">
+                                    Plant Type
+                                </div>
+
+                                <div class="info-value">
+                                    Perennial flowering plant
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                    <!-- =================================================
+                         MODEL CONFIDENCE
+                    ================================================== -->
+
+                    {% if result.confidence is not none %}
+
+
+                        <div class="confidence-box">
+
+
+                            <div class="confidence-top">
+
+                                <span>
+                                    Model Confidence
+                                </span>
+
+
+                                <strong>
+                                    {{ result.confidence }}%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="progress">
+
+                                <span
+                                    style="width: {{ result.confidence }}%;"
+                                ></span>
+
+                            </div>
+
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                    <!-- =================================================
+                         CLASS PROBABILITIES
+                    ================================================== -->
+
+                    {% if result.probabilities %}
+
+
+                        <div class="probabilities">
+
+
+                            {% for species, probability in result.probabilities.items() %}
+
+
+                                <div class="probability">
+
+
+                                    <span>
+
+                                        {{ species.replace("Iris-", "Iris ") }}
+
+                                    </span>
+
+
+                                    <strong>
+
+                                        {{ probability }}%
+
+                                    </strong>
+
+
+                                </div>
+
+
+                            {% endfor %}
+
+
+                        </div>
+
+
+                    {% endif %}
+
+
+                {% else %}
+
+
+                    <!-- =================================================
+                         INITIAL EMPTY RESULT
+
+                         NO IMAGE HERE.
+                         NO PRE-UPLOADED IMAGE.
+                    ================================================== -->
+
+                    <div class="empty-result">
+
+
+                        <div class="empty-icon">
+                            🌿
+                        </div>
+
+
+                        <div class="result-label">
+                            Waiting for Input
+                        </div>
+
+
+                        <h2>
+                            Your result appears here.
+                        </h2>
+
+
+                        <p>
+
+                            Enter the four flower measurements
+                            and click "Predict Species" to see
+                            the predicted species, flower image,
+                            confidence score, probabilities,
+                            and biological information.
+
+                        </p>
+
+
+                    </div>
+
+
+                {% endif %}
+
+
+            </div>
 
         </section>
 
+
     </div>
 
 
-    <!-- PROJECT STATS -->
+    <!-- =====================================================
+         MODEL PERFORMANCE
+
+         ONLY 96.67%
+
+         NO 4
+         NO 3
+    ===================================================== -->
 
     <div class="stats">
 
-        <div class="stat">
-
-            <div class="stat-number">
-                4
-            </div>
-
-            <div class="stat-text">
-                Flower measurements used as
-                machine-learning features.
-            </div>
-
-        </div>
-
 
         <div class="stat">
 
-            <div class="stat-number">
-                3
-            </div>
-
-            <div class="stat-text">
-                Iris species classified by
-                the model.
-            </div>
-
-        </div>
-
-
-        <div class="stat">
 
             <div class="stat-number">
+
                 96.67%
+
             </div>
 
+
             <div class="stat-text">
+
                 Logistic Regression
                 classification performance.
+
             </div>
 
+
         </div>
+
 
     </div>
 
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
 
     <footer>
 
@@ -1038,19 +1904,36 @@
 </div>
 
 
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script>
 
-function loadDemo() {
 
-    document.getElementById("sepal_length").value = "5.1";
+    function loadDemo() {
 
-    document.getElementById("sepal_width").value = "3.5";
+        document.getElementById(
+            "sepal_length"
+        ).value = "5.1";
 
-    document.getElementById("petal_length").value = "1.4";
 
-    document.getElementById("petal_width").value = "0.2";
+        document.getElementById(
+            "sepal_width"
+        ).value = "3.5";
 
-}
+
+        document.getElementById(
+            "petal_length"
+        ).value = "1.4";
+
+
+        document.getElementById(
+            "petal_width"
+        ).value = "0.2";
+
+    }
+
 
 </script>
 
